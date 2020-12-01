@@ -49,14 +49,14 @@ namespace Weekly_Jobs
             SqlConnection conn = new SqlConnection(ConnectionString);
             SqlCommand jobIDQuery = new SqlCommand("select JOBID from [dbo].[ENPRISE_JOBCOST_SUBJOB] where SUBJOBID = @SUBJOBID", conn);
             string jobID = null;
-            using(conn)
+            using (conn)
             {
                 jobIDQuery.Parameters.AddWithValue("@SUBJOBID", subJobID);
                 conn.Open();
                 SqlDataReader reader = jobIDQuery.ExecuteReader();
                 try
                 {
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         jobID = reader[0].ToString();
                     }
@@ -74,14 +74,14 @@ namespace Weekly_Jobs
             string location_code = null;
             SqlConnection conn = new SqlConnection(ConnectionString);
             SqlCommand locationQuery = new SqlCommand("select U_Region from [dbo].[ENPRISE_JOBCOST_JOB] where JOBID = @PARENT_JOB_ID", conn);
-            using(conn)
+            using (conn)
             {
                 locationQuery.Parameters.AddWithValue("@PARENT_JOB_ID", jobID);
                 conn.Open();
                 SqlDataReader reader = locationQuery.ExecuteReader();
                 try
                 {
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         location_code = reader[0].ToString();
                     }
@@ -92,7 +92,7 @@ namespace Weekly_Jobs
                 }
             }
             string location_name;
-            switch(location_code)
+            switch (location_code)
             {
                 case "01":
                     location_name = "Hudson";
@@ -235,7 +235,7 @@ namespace Weekly_Jobs
                     bool flag = false;
                     foreach (DataColumn col in table.Columns)
                     {
-                        if(count == TYPE)
+                        if (count == TYPE)
                         {
                             string type = row[col].ToString();
                             if (type.Equals("Water/Sewer Service") || type.Equals("PL Camera Lines"))
@@ -247,7 +247,7 @@ namespace Weekly_Jobs
                             item = "          ";
                         }
                         string ID = DATA_COLUMN_NAMES[count];
-                        
+
                         rowData.Add(ID, item);
                         count++;
                     }

@@ -27,7 +27,7 @@ namespace Weekly_Jobs
             //SQL function results
             ArrayList results = data_pull.Get_Results();
 
-            foreach(Dictionary<string, object> job in results)
+            foreach (Dictionary<string, object> job in results)
             {
                 Console.WriteLine("Adding additional data for Job #" + job["SUB_JOB_ID"].ToString());
                 string jobID = SAP_DATA_PULL.Pull_SAP_JobID(job["SUB_JOB_ID"].ToString());
@@ -43,7 +43,7 @@ namespace Weekly_Jobs
                 job.Add("GAS PERMIT", gas);
                 job.Add("ALTCODE", altcode);
             }
-            
+
             Application oXL = new Application();
 
             Workbook wb = oXL.Workbooks.Add(XlSheetType.xlWorksheet);
@@ -82,14 +82,14 @@ namespace Weekly_Jobs
                 "PAYMENT DATE",
             };
 
-            for(int i = 1; i < 12; i++)
+            for (int i = 1; i < 12; i++)
             {
-                hudson_ac.Cells[1, i] = list[i-1];
-                hudson_plum.Cells[1, i] = list[i-1];
-                orlando_ac.Cells[1, i] = list[i-1];
-                orlando_plum.Cells[1, i] = list[i-1];
-                south_ac.Cells[1, i] = list[i-1];
-                south_plum.Cells[1, i] = list[i-1];
+                hudson_ac.Cells[1, i] = list[i - 1];
+                hudson_plum.Cells[1, i] = list[i - 1];
+                orlando_ac.Cells[1, i] = list[i - 1];
+                orlando_plum.Cells[1, i] = list[i - 1];
+                south_ac.Cells[1, i] = list[i - 1];
+                south_plum.Cells[1, i] = list[i - 1];
             }
 
             //row iterators
@@ -244,7 +244,7 @@ namespace Weekly_Jobs
 
             Console.WriteLine("Form Complete");
             oXL.Visible = true;
-            
+
         }
     }
 }
